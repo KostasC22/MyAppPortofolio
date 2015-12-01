@@ -1,17 +1,31 @@
 package com.havistudio.myappportofolio;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class MainActivity extends AppCompatActivity{
+
+    @Bind(R.id.buttonSpotifyStreamer)
+    Button buttonSpotifyStreamer;
+    @Bind(R.id.buttonScoresApp)
+    Button buttonScoresApp;
+    @Bind(R.id.buttonLibraryApp)
+    Button buttonLibraryApp;
+    @Bind(R.id.buttonBuildItBigger)
+    Button buttonBuildItBigger;
+    @Bind(R.id.buttonXYZReader)
+    Button buttonXYZReader;
+    @Bind(R.id.buttonCapstoneApp)
+    Button buttonCapstoneApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,18 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(this);
-        Button button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(this);
-        Button button3 = (Button) findViewById(R.id.button3);
-        button3.setOnClickListener(this);
-        Button button4 = (Button) findViewById(R.id.button4);
-        button4.setOnClickListener(this);
-        Button button5 = (Button) findViewById(R.id.button5);
-        button5.setOnClickListener(this);
-        Button button6 = (Button) findViewById(R.id.button6);
-        button6.setOnClickListener(this);
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -56,32 +59,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View v) {
-        Toast toast;
-        switch(v.getId()){
-            case R.id.button:
-                toast = Toast.makeText(getApplicationContext(), "This button will launch my spotify streamer app", Toast.LENGTH_SHORT);
-                break;
-            case R.id.button2:
-                toast = Toast.makeText(getApplicationContext(), "This button will launch my scores app", Toast.LENGTH_SHORT);
-                break;
-            case R.id.button3:
-                toast = Toast.makeText(getApplicationContext(), "This button will launch my library app", Toast.LENGTH_SHORT);
-                break;
-            case R.id.button4:
-                toast = Toast.makeText(getApplicationContext(), "This button will launch my build it bigger app", Toast.LENGTH_SHORT);
-                break;
-            case R.id.button5:
-                toast = Toast.makeText(getApplicationContext(), "This button will launch my xyz reader", Toast.LENGTH_SHORT);
-                break;
-            case R.id.button6:
-                toast = Toast.makeText(getApplicationContext(), "This button will launch my capstone app", Toast.LENGTH_SHORT);
-                break;
-            default:
-                toast = Toast.makeText(getApplicationContext(), "This button show you that something is wrong", Toast.LENGTH_SHORT);
-                break;
-        }
-        toast.show();
+    @OnClick(R.id.buttonSpotifyStreamer)
+    protected void toastSpotStre(){
+        showToast("This button will launch my spotify streamer app");
     }
+
+    @OnClick(R.id.buttonScoresApp)
+    protected void toastScorApp(){
+        showToast("This button will launch my scores app");
+    }
+
+    @OnClick(R.id.buttonLibraryApp)
+    protected void toastLibApp(){
+        showToast("This button will launch my library app");
+    }
+
+    @OnClick(R.id.buttonBuildItBigger)
+    protected void toastBuiBig(){
+        showToast("This button will launch my build it bigger app");
+    }
+
+    @OnClick(R.id.buttonXYZReader)
+    protected void toastXYZRed(){
+        showToast("This button will launch my xyz reader");
+    }
+
+    @OnClick(R.id.buttonCapstoneApp)
+    protected void toast(){
+        showToast("This button will launch my capstone app");
+    }
+
+    protected void showToast(String message){
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+    }
+
 }
